@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('../Images/Fondo\ 1.jpg');
+    background-size: cover;
+}
+.logo img {
+    width: 120px;
+    margin-top: 5px;
+}
+.navbar {
+    height: 40px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav__btn {
+    height: 30px;
+    width: 140px;
+    margin: 0 5px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 25px;
+
+    font-size: 16px;
+    font-weight: bold;
+}
+.nav__btn a:link, .nav__btn a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.container__cards {
+    width: 80%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    gap: 20px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.filters__container {
+    height: 40px;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.filter, .order {
+    margin: 0 20px;
+}
+
+.order select {
+    height: 25px;
+    width: 130px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 25px;
+
+    color: black;
+    font-weight: bold;
+    
+}
+.order select::selection {
+    color: white;
+}
+.filter select {
+    height: 25px;
+    width: 80px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 25px;
+
+    color: black;
+    font-weight: bold;
+    
+}
+.filter select::selection {
+    color: white;
+}
+
+.loading {
+    position: absolute;
+    
+    top: 25vh;
+    left: 40vw;
+}
+
+.filter select, .order select {
+    cursor: pointer;
+}

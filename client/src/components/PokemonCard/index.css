@@ -1,0 +1,203 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-decoration-color: none;
+}
+
+a:link, a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.Card {
+    width: 250px;
+    height: 300px;
+
+    padding: 10px;
+    margin: 20px;
+
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+    background: rgba(255,255,255,0.01);
+    border-top: 1px solid rgba(255,255,255, 0.5);
+    border-left: 1px solid rgba(255,255,255, 0.5);
+    border-radius: 15px;
+    transition: all 300ms;
+
+    backdrop-filter: blur(5px);
+}
+.Card:hover {
+    transform: scale(1.05);
+    transform: translateY(-10px);
+}
+.Card:hover img {
+    transform: scale(1.1);
+}
+
+.Card .name {
+    color: black;
+}
+
+.Card img {
+    width: 200px;
+    transition: all 300ms;
+}
+
+.typesDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 5px 1px;
+    text-align: center;
+}
+
+.typesDiv h4 {
+border-radius: 20px;
+width: 200px;
+align-items: center;
+}
+
+.normal {
+
+    background: linear-gradient(120deg, #cdd1d2 0%, #dbcb79 100%);
+    box-shadow: 0px 5px 20px -10px #000000;
+
+    background-color: #000000;
+}
+
+.fighting {
+    background: linear-gradient(120deg, #f4f9fb 0%, #271209 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.flying {
+    border-radius: 42px;
+
+    background: linear-gradient(120deg, #ffffff 0%, #48eaf9 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.poison {
+    background: linear-gradient(120deg, #9963af 0%, #b400d0 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.ground {
+    background: linear-gradient(120deg, #817860 0%, #855c03 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.rock {
+    background: linear-gradient(120deg, #8e6108 0%, #322a09 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.bug {
+    background: linear-gradient(120deg, #9ac49a 0%, #06f40a 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.ghost {
+    background: linear-gradient(120deg, #701dbe 0%, #1c013f 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.steel {
+    background: linear-gradient(120deg, #a6b2b6 0%, #363637 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.fire {
+    background: linear-gradient(120deg, #e95656 0%, #9e0404 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.water {
+    background: linear-gradient(120deg, #1CB5E0 0%, #295cd3 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.grass {
+    background: linear-gradient(120deg, #416a44 0%, #087911 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.electric {
+    background: linear-gradient(120deg, #acae59 0%, #eae60c 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.psychic {
+    background: linear-gradient(120deg, #db7db2 0%, #5c0e6c 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.ice {
+    background: linear-gradient(120deg, #1CB5E0 0%, #000851 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.dragon {
+    background: linear-gradient(120deg, #da5458 0%, #930d37 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.dark {
+    background: linear-gradient(120deg, #6b696c 0%, #202020 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.fairy {
+    background: linear-gradient(120deg, #e295e4 0%, #ad4aa8 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.unknown {
+    background: linear-gradient(120deg, #ffffff 0%, #ffffff 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
+
+.shadow {
+    background: linear-gradient(120deg, #97949d 0%, #42255d 100%);
+    box-shadow: 0px 5px 20px -10px #000851;
+
+    background-color: #1CB5E0;
+}
