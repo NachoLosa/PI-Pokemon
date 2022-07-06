@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import './index.css'
-
+import styles from './index.css'
 
 export default function LandingPage() {
     return (
         <div className="landing__page">
-            <h1>Welcome to the Pokédex</h1>
-            <Link to='/home'>
-                <button>Enter</button>
-            </Link>
+            <div className="content">
+                <h1 className="btn"><p>Welcome to the Pokédex</p><i></i></h1>
+                <Link to='/home'>
+                    <h1 className="btn"><p>Enter Home</p><i></i></h1>
+                  
+                </Link>
+            </div>
         </div>
     )
 }

@@ -56,37 +56,22 @@ body {
     align-items: center;
 
 }
-.filter, .order {
-    margin: 0 20px;
+.filter, .order, .refresh {
+    margin: 0 10px;
 }
 
-.order select {
+.order select, .filter select, .refresh {
     height: 25px;
-    width: 130px;
+    width: 140px;
     background: none;
     border: 2px solid black;
     border-radius: 25px;
 
     color: black;
     font-weight: bold;
-    
-}
-.order select::selection {
-    color: white;
-}
-.filter select {
-    height: 25px;
-    width: 80px;
-    background: none;
-    border: 2px solid black;
-    border-radius: 25px;
+    font-size: 14px;
 
-    color: black;
-    font-weight: bold;
-    
-}
-.filter select::selection {
-    color: white;
+    cursor: pointer;    
 }
 
 .loading {
@@ -94,8 +79,4 @@ body {
     
     top: 25vh;
     left: 40vw;
-}
-
-.filter select, .order select {
-    cursor: pointer;
 }

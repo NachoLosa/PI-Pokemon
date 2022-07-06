@@ -5,11 +5,9 @@ export default function Paginated(
     { pokesPerPage,
         pokemons,
         paginated,
-        /* currentPage,
-        setCurrentPage, */
     }) {
-        
-        const pageNumbers = [];
+
+    const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(pokemons / pokesPerPage); i++) {
         pageNumbers.push(i)
@@ -18,17 +16,16 @@ export default function Paginated(
     return (
         <nav className="pages__container">
             <ul className="pages">
-                {/*<a onClick={() =>
-                setCurrentPage(currentPage === 1 ? currentPage 
-                : currentPage - 1)} className='number'>{'<'}</a> */}
-                { pageNumbers && pageNumbers.map(number => (
-                    <li className="number" key={number}>
-                    <a onClick={() => paginated(number)}>{number}</a>
+                {pageNumbers && pageNumbers.map(number => (
+                    <li key={number}>
+                        <button
+                            className="number"
+                            onClick={() => paginated(number)}
+                        >
+                            {number}
+                        </button>
                     </li>
                 ))}
-                {/* <button onClick={() =>
-                setCurrentPage(currentPage + 1)}
-                className='number'>{'>'}</button> */}
             </ul>
         </nav>
     )

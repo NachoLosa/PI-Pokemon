@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postPokemon, getTypes } from "../../redux/actions";
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './index.css'
+
+
+    const regex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi
 
 function validate(input) {
     let errors = {}
@@ -11,7 +14,9 @@ function validate(input) {
         errors.name = 'The name is required for the creation of the pokemon'
     }
     if (!input.image) {
-        errors.image = 'Please enter an image of your pokemon'
+        errors.image = 'Please enter an url image of your pokemon'
+    } else if (!regex.test(input.image)) {
+        errors.image = 'Url invalid'
     }
     if (input.hp < 0 || input.hp > 255) {
         errors.stats = 'Stat values ​​must be between 0 and 255'
@@ -25,22 +30,22 @@ function validate(input) {
     if (input.speed < 0 || input.speed > 255) {
         errors.stats = 'Stat values ​​must be between 0 and 255'
     }
-    if (input.height < 0 || input.height > 255) {
-        errors.height = 'Stat values ​​must be between 0 and 1.000'
+    if (input.height < 0 || input.height > 1001) {
+        errors.height = 'Height value ​​must be between 0 and 1.000'
     }
-    if (input.weight < 0 || input.weight > 255) {
-        errors.weight = 'Stat values ​​must be between 0 and 10.000'
+    if (input.weight < 0 || input.weight > 10001) {
+        errors.weight = 'Weight value ​​must be between 0 and 10.000'
     }
-    /* if ( types[0] === types[1] ) {
-        errors.type = 'Two same types cannot be selected, please change the "Subtype" or select "None"'
+    /* if (input.types.length ) {
+        errors.types = 'Please select at least one type'
     } */
-
     return errors
 }
 
 export default function PokemonCreate() {
 
     const dispatch = useDispatch()
+    /* const navigate = useNavigate() */
     const types = useSelector((state) => state.types)
 
     const [errors, setErrors] = useState({})
@@ -53,7 +58,7 @@ export default function PokemonCreate() {
         speed: '',
         height: '',
         weight: '',
-        types: [],
+        type: [],
     })
 
     useEffect(() => {
@@ -63,8 +68,21 @@ export default function PokemonCreate() {
     function handleChange(e) {
         setInput({
             ...input,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
+        setErrors(validate({
+            ...input,
+            [e.target.value]: e.target.value
+        }))
+    }
+
+    function handleCheck(e) {
+        if (e.target.checked) {
+            setInput({
+                ...input,
+                type: [...input.type, e.target.value]
+            })
+        } else 
         setErrors(validate({
             ...input,
             [e.target.value]: e.target.value
@@ -75,7 +93,6 @@ export default function PokemonCreate() {
         e.preventDefault()
         dispatch(postPokemon(input))
         alert('Congratulations! the Pokémon was created successfully')
-        /* console.log(input) */
         setInput({
             name: '',
             image: '',
@@ -85,8 +102,9 @@ export default function PokemonCreate() {
             speed: '',
             height: '',
             weight: '',
-            types: [],
+            type: [],
         })
+        /* navigate('/home') */
     }
     return (
         <div className="fullpage">
@@ -191,24 +209,36 @@ export default function PokemonCreate() {
                             />
                         </div>
                     </div>
-                    <div className="type__part">
-                        <div>
-                            <h4>Main type</h4>
-                            <select>
-                                {types.map((t) =>
-                                    <option value={input.types} key={t.name}>{t.name}</option>
-                                )}
-                            </select>
-                        </div>
+                    <div>
                         {/* <div>
-                            <h4>Sub type</h4>
-                            <select>
-                                <option value="">None</option>
+                            <h4>Main type</h4>
+                            <select
+                                name='type'
+                                value={input.type}
+                                onChange={e => handleChange(e)}>
                                 {types.map((t) =>
-                                    <option value={input.types} key={t.name}>{t.name}</option>
+                                    <option value={input.type.name} key={t.name}>
+                                        {t.name}
+                                    </option>
                                 )}
                             </select>
                         </div> */}
+                        <h4>Types:</h4>
+                        <div className="type__part">
+
+                            {types.map(e => {
+                                return (
+                                    <div key={e.id}>
+                                        <input
+                                            type="checkbox"
+                                            name={e.name}
+                                            value={e.name}
+                                            onChange={e => handleCheck(e)}/>
+                                        {e.name}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                     <div>
                         <div>
@@ -227,8 +257,16 @@ export default function PokemonCreate() {
                             {errors.weight && (
                                 <p className="error">{errors.weight}</p>
                             )}
+                            {errors.types && (
+                                <p className="error">{errors.types}</p>
+                            )}
                         </div>
-                        <button type="submit">Create</button>
+                        <button type="submit"
+                            disabled={
+                                !input.name || errors.image || errors.stats || errors.height || errors.weight || errors.types
+                                    ? true
+                                    : false
+                            }>Create</button>
                     </div>
                 </form >
             </div >

@@ -31,16 +31,15 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(getPokemons())
-    }, [dispatch])
-    useEffect(() => {
         dispatch(getTypes())
-    }, [])
+    }, [dispatch])
 
     function handleNameSort(e) {
         e.preventDefault();
         dispatch(sortByName(e.target.value))
         setCurrentPage(1)
         setOrder(`ordered ${e.target.value}`)
+        console.log('soy order',setOrder)
     }
     function handleAttackSort(e) {
         e.preventDefault()
@@ -50,12 +49,20 @@ export default function Home() {
     }
 
     function handleFilterCreated(e) {
+        e.preventDefault()
         dispatch(filterCreated(e.target.value))
         setCurrentPage(1)
     }
 
     function handleFilterType(e) {
+        e.preventDefault()
         dispatch(filterType(e.target.value))
+        setCurrentPage(1)
+    }
+    
+    function handleClick(e) {
+        e.preventDefault()
+        dispatch(getPokemons())
         setCurrentPage(1)
     }
 
@@ -109,6 +116,9 @@ export default function Home() {
                             })}
                         </select>
                     </div>
+                    <div className="refresh" onClick={e => handleClick(e)}>
+                        <p>Refresh Pokemóns</p>
+                    </div>
                 </div>
                 {currentPokemons.length > 0 ?
                     <>
@@ -117,7 +127,8 @@ export default function Home() {
                                 pokesPerPage={pokesPerPage}
                                 pokemons={pokemons.length}
                                 paginated={paginated} />
-                        </div><div className='container__cards'>
+                        </div>
+                        <div className='container__cards'>
                             {currentPokemons?.map((p) => {
                                 return (
                                     <Pokemon
@@ -128,6 +139,12 @@ export default function Home() {
                                         types={p.types} />
                                 )
                             })}
+                        </div>
+                        <div>
+                            <Paginated
+                                pokesPerPage={pokesPerPage}
+                                pokemons={pokemons.length}
+                                paginated={paginated} />
                         </div>
                     </>
                     : <div>

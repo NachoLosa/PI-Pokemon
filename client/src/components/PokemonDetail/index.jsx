@@ -75,6 +75,10 @@ export default function PokemonDetail() {
                                 <td>{myPokemon[0].weight}</td>
                             </tr>
                         </tbody></table>
+                        {/* <span className="types__img">
+                            <img src={typesImage[myPokemon[0].types[0]]} alt="mainTypeImg" className="mainTypeImg" />
+                            {typesImage[myPokemon[0].types[1]] ? <img src={typesImage[myPokemon[0].types[1]]} alt="subTypeImg" className="subTypeImg" /> : <></>}
+                        </span> */}
                     </div>
                 </div>
                 : <div className="loading">

@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
+
+const defaultImg = 'https://w7.pngwing.com/pngs/248/960/png-transparent-pikachu-pokemon-go-silhouette-drawing-pikachu-dog-like-mammal-fictional-character-black-thumbnail.png'
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
@@ -41,7 +43,7 @@ module.exports = (sequelize) => {
 
     image: {
       type: DataTypes.STRING,
-      defaultValue: 'http://i.imgur.com/rwXStQ0.jpg'
+      defaultValue: defaultImg
     },
     createdAtDb: {
       type: DataTypes.BOOLEAN,
