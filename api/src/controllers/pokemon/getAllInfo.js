@@ -6,7 +6,7 @@ const getAllInfo = async () => {
     const apiInfo = await getApiInfo()
     const dbInfo = await getDbInfo()
     const allInfo = await apiInfo.concat(dbInfo)
-    console.log(allInfo)
+    /* console.log(allInfo) */
     return allInfo;    
 }
 

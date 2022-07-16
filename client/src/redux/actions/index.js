@@ -1,7 +1,6 @@
 import axios from 'axios'
 export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS'
 export const GET_POKE_BY_NAME = 'GET_POKE_BY_NAME'
-export const GET_DETAIL = 'GET_DETAIL'
 export const GET_TYPES = 'GET_TYPES'
 export const POST_POKEMON = 'POST_POKEMON'
 export const SORT_BY_NAME = 'SORT_BY_NAME'
@@ -43,23 +42,9 @@ export function getTypes() {
    return async function (dispatch) {
         let json = await axios.get('http://localhost:3001/types')
         return dispatch( {
-            type: 'GET_TYPES',
+            type: GET_TYPES,
             payload: json.data
         })
-    }
-}
-
-export function getDetail(id) {
-    return async function (dispatch) {
-        try {
-            let json = await axios.get(`http://localhost:3001/pokemons/${id}`)
-            return dispatch ({
-                type: GET_DETAIL,
-                payload: json.data
-            })
-        } catch (error) {
-            console.log(error)
-        }
     }
 }
 

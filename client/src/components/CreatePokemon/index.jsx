@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { postPokemon, getTypes } from "../../redux/actions";
 import { useDispatch, useSelector } from 'react-redux'
-import styles from './index.css'
+import './index.css'
 
 
-    const regex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi
+    /* const regex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi */
 
 function validate(input) {
     let errors = {}
@@ -15,9 +15,9 @@ function validate(input) {
     }
     if (!input.image) {
         errors.image = 'Please enter an url image of your pokemon'
-    } else if (!regex.test(input.image)) {
+    } /* else if (!regex.test(input.image)) {
         errors.image = 'Url invalid'
-    }
+    } */
     if (input.hp < 0 || input.hp > 255) {
         errors.stats = 'Stat values ​​must be between 0 and 255'
     }
@@ -36,16 +36,16 @@ function validate(input) {
     if (input.weight < 0 || input.weight > 10001) {
         errors.weight = 'Weight value ​​must be between 0 and 10.000'
     }
-    /* if (input.types.length ) {
-        errors.types = 'Please select at least one type'
-    } */
+    if (input.type.length === 0) {
+        errors.type = 'Please select at least one type'
+    }
     return errors
 }
 
 export default function PokemonCreate() {
 
     const dispatch = useDispatch()
-    /* const navigate = useNavigate() */
+    const navigate = useNavigate()
     const types = useSelector((state) => state.types)
 
     const [errors, setErrors] = useState({})
@@ -77,12 +77,14 @@ export default function PokemonCreate() {
     }
 
     function handleCheck(e) {
-        if (e.target.checked) {
+        if (e.target.checked 
+            && !input.type.includes(e.target.value) 
+            && input.type.length < 2) {
             setInput({
                 ...input,
                 type: [...input.type, e.target.value]
             })
-        } else 
+        } 
         setErrors(validate({
             ...input,
             [e.target.value]: e.target.value
@@ -104,9 +106,10 @@ export default function PokemonCreate() {
             weight: '',
             type: [],
         })
-        /* navigate('/home') */
+        navigate('/home')
     }
     return (
+
         <div className="fullpage">
             <Link to='/home'><button className="home__btn">Home</button></Link>
             <div className="form__div">
@@ -123,7 +126,18 @@ export default function PokemonCreate() {
                                 onChange={e => handleChange(e)}
                             />
                         </div>
-
+                    </div>
+                    <div className="formPart">
+                        <div className="formPart__int">
+                            <label>Image: </label>
+                            <input
+                                type="text"
+                                name='image'
+                                value={input.image}
+                                placeholder='image url'
+                                onChange={e => handleChange(e)}
+                            />
+                        </div>
                     </div>
                     <div className="formPart">
                         <div className="formPart__int">
@@ -196,33 +210,8 @@ export default function PokemonCreate() {
                                 onChange={e => handleChange(e)}
                             />
                         </div>
-                    </div>
-                    <div className="formPart">
-                        <div className="formPart__int">
-                            <label>Image: </label>
-                            <input
-                                type="text"
-                                name='image'
-                                value={input.image}
-                                placeholder='image url'
-                                onChange={e => handleChange(e)}
-                            />
-                        </div>
-                    </div>
+                    </div>                  
                     <div>
-                        {/* <div>
-                            <h4>Main type</h4>
-                            <select
-                                name='type'
-                                value={input.type}
-                                onChange={e => handleChange(e)}>
-                                {types.map((t) =>
-                                    <option value={input.type.name} key={t.name}>
-                                        {t.name}
-                                    </option>
-                                )}
-                            </select>
-                        </div> */}
                         <h4>Types:</h4>
                         <div className="type__part">
 
@@ -257,13 +246,13 @@ export default function PokemonCreate() {
                             {errors.weight && (
                                 <p className="error">{errors.weight}</p>
                             )}
-                            {errors.types && (
-                                <p className="error">{errors.types}</p>
+                            {errors.type && (
+                                <p className="error">{errors.type}</p>
                             )}
                         </div>
                         <button type="submit"
                             disabled={
-                                !input.name || errors.image || errors.stats || errors.height || errors.weight || errors.types
+                                !input.name || errors.image || errors.stats || errors.height || errors.weight || errors.type
                                     ? true
                                     : false
                             }>Create</button>

@@ -1,11 +1,10 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import styles from './index.css'
 import typesImage from "./typeImgs";
+import Loading from "../Loading";
+import './index.css'
 
 export default function PokemonDetail() {
     /* const dispatch = useDispatch()
@@ -19,18 +18,19 @@ export default function PokemonDetail() {
     }, [dispatch, id]) */
 
     const { id } = useParams()
-    const [myPokemon, setPokemon] = useState(null)
+    const [myPokemon, setMyPokemon] = useState(null)
 
     useEffect(() => {
         axios.get(`http://localhost:3001/pokemons/${id}`)
             .then((response) => {
-                setPokemon(response.data)
+                setMyPokemon(response.data)
             })
 
         return () => {
-            setPokemon(null)
+            setMyPokemon(null)
         }
-    }, [])
+    }, [id])
+    console.log(myPokemon)
     return (
         <div className="detail">
             <div className="detail-btn">
@@ -75,15 +75,9 @@ export default function PokemonDetail() {
                                 <td>{myPokemon[0].weight}</td>
                             </tr>
                         </tbody></table>
-                        {/* <span className="types__img">
-                            <img src={typesImage[myPokemon[0].types[0]]} alt="mainTypeImg" className="mainTypeImg" />
-                            {typesImage[myPokemon[0].types[1]] ? <img src={typesImage[myPokemon[0].types[1]]} alt="subTypeImg" className="subTypeImg" /> : <></>}
-                        </span> */}
                     </div>
                 </div>
-                : <div className="loading">
-                    <img src="https://i.gifer.com/4OKl.gif" alt="" />
-                </div>
+                : <Loading /> 
             }
         </div>
     )

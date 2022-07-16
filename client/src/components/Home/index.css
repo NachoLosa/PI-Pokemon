@@ -35,6 +35,24 @@ body {
     color: white;
 }
 
+.feedback__btn {
+    height: 30px;
+    width: 100px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 25px;
+
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+.feedback__btn:hover {
+    cursor: pointer;
+}
 .container__cards {
     width: 80%;
     margin: auto;

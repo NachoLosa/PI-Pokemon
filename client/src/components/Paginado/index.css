@@ -14,7 +14,7 @@
 li {
     list-style: none;
 }
-.number {
+.number, .prev_next {
     height: auto;
     width: 25px;
     margin: 5px;
@@ -34,8 +34,12 @@ li {
     font-size: 22px;
 }
 
-.number:hover, .number:focus {
+.number:hover, .number:focus{
     background-color: rgb(87, 26, 68, 0.5);
     cursor: pointer;
 }
 
+.prev_next:hover{
+    background-color: rgb(87, 26, 68, 0.5);
+    cursor: pointer;
+}

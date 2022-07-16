@@ -90,7 +90,7 @@ img {
 .normal {
     background: linear-gradient(110deg, #FDBB2D 0%, #3A1C71 100%);
     box-shadow: 0px 5px 20px -10px #3A1C71;
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 .water {

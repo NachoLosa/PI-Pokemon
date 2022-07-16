@@ -3,7 +3,7 @@
     width: 100vw;
 
     background-image: url('../Images/Pikachu\ fondo.jpg');
-    background-size: cover;
+    background-size: 1920px 937px;
 
     display: flex;
     justify-content: right;
@@ -13,7 +13,7 @@
 .content {
     height: auto;
     width: auto;
-
+    margin-right: 25px;
     display: flex;
     justify-content: center;
     align-items: center;

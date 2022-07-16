@@ -1,0 +1,8 @@
+.loading {
+    display: flex;
+    flex-direction: column;
+}
+
+img, h1 {
+    margin: 20 20px;
+}

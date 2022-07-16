@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getTypes } from '../../redux/actions'
 import './index.css'
 export default function Pokemon({ name, image, id, types }) {
     /* console.log(name, id, types) */
@@ -9,8 +8,8 @@ export default function Pokemon({ name, image, id, types }) {
         <div className='Card'>
             <Link to={`/detail/${id}`}>
             <h3 className='name'>{name}</h3>
-            {image?<img src={image} alt="imagen" />
-            :<img src={defaultImg}></img>}
+            {image?<img src={image} alt="Pic of pokemon" />
+            :<img src={defaultImg} alt='Pic of pokemon'></img>}
             <div className="typesDiv">     
             { types.map(e => (
                 <h4 key={e} className={e}>{e}</h4>

@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     let allPokemons = await getAllPokemon()
     try {
         if (name) {
-            let pokeName = await allPokemons.filter(e => e.name.toLowerCase() === (name.toLowerCase()))
+            let pokeName = await allPokemons.filter(e => e.name.toLowerCase() === name.toLowerCase())
             pokeName.length ?
                 res.status(200).json(pokeName) :
                 res.status(404).json({ msg: `That pokemon doesn't exist` })
@@ -33,7 +33,7 @@ router.get('/:id', async (req, res, next) => {
             let pokemonId = allPokemons.filter(e => e.id == id)
             pokemonId.length ?
                 res.status(200).json(pokemonId) :
-                res.status(404).send('There is not find a pokemon with that id')
+                res.status(404).send('There is no pokemon with that id')
         }
     } catch (error) {
         res.status(400).json(next(error))
@@ -58,11 +58,11 @@ router.post('/', async (req, res) => {
     try {
         if (name && typeof name === 'string') {
             if (
-                hp > 0 && hp <= 255, 
-                attack > 0 && attack <= 255, 
-                defense > 0 && defense <= 255, 
-                speed > 0 && speed <= 255, 
-                height > 0 && height <= 1000, 
+                hp > 0 && hp <= 255,
+                attack > 0 && attack <= 255,
+                defense > 0 && defense <= 255,
+                speed > 0 && speed <= 255,
+                height > 0 && height <= 1000,
                 weight > 0 && weight <= 10000
             ) {
                 let pokemonCreated = await Pokemon.create({
@@ -74,10 +74,9 @@ router.post('/', async (req, res) => {
                     height,
                     weight,
                     image,
-                    type,
                     createdAtDb
                 })
-                let pokemonTypes = await Type.findAll({ where: { name: type }})
+                let pokemonTypes = await Type.findAll({ where: { name: type } })
                 pokemonCreated.addType(pokemonTypes);
                 res.status(201).send('The Pokémon was been successfully created')
             } else {
@@ -86,10 +85,10 @@ router.post('/', async (req, res) => {
         } else {
             res.status(400).send('Name is required')
         }
-    
+
     } catch (error) {
-        res.status(400).json({msg: error.message})
-    }  
+        res.status(400).json({ msg: error.message })
+    }
 })
 
 module.exports = router;

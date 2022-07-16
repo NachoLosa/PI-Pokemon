@@ -1,9 +1,19 @@
-import {GET_ALL_POKEMONS, GET_POKE_BY_NAME, GET_DETAIL, GET_TYPES, POST_POKEMON, SORT_BY_NAME, SORT_BY_ATTACK, FILTER_CREATED, FILTER_TYPE} from '../actions/'
+import {
+    GET_ALL_POKEMONS,
+    GET_POKE_BY_NAME,
+    GET_TYPES,
+    POST_POKEMON,
+    SORT_BY_NAME,
+    SORT_BY_ATTACK,
+    FILTER_CREATED,
+    FILTER_TYPE
+} from '../actions/'
+
 const initialState = {
     pokemons: [],
     allPokemons: [],
     types: [],
-    detail: []
+    /*  detail: [] */
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -13,7 +23,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 pokemons: payload,
                 allPokemons: payload,
-                detail: [],
             }
 
         case GET_POKE_BY_NAME:
@@ -28,12 +37,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 types: payload
             }
 
-        case GET_DETAIL:
-            return {
-                ...state,
-                detail: payload
-            }
-
         case POST_POKEMON:
             return {
                 ...state,
@@ -42,7 +45,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case SORT_BY_NAME:
             console.log('soy el payload', payload)
             let sortedName =
-                payload === 'asc' 
+                payload === 'asc'
                     ? state.pokemons.sort((a, b) => {
                         if (a.name.toLowerCase() > b.name.toLowerCase()) {
                             return 1;
@@ -91,20 +94,18 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
         case FILTER_TYPE:
             let typePokemons = state.allPokemons
-            console.log('Soy payload',payload)
-            console.log('soy typePokemon',typePokemons)
-            console.log('soy typePokemon[0]',typePokemons[0])
-            console.log('soy types de 0',typePokemons[0].types)
+            /* console.log('Soy payload',payload)
+            console.log('soy typePokemon',typePokemons)*/
 
-            const filteredTypes = payload === 'all' 
-            ? typePokemons 
-            : typePokemons.filter( poke => poke.types.includes(payload))
-                console.log('soy types',typePokemons[0].types)
-            
-                return {
-                    ...state,
-                    pokemons: filteredTypes
-                }
+            const filteredTypes = payload === 'all'
+                ? typePokemons
+                : typePokemons.filter(poke => poke.types.includes(payload))
+            /* console.log('soy types',typePokemons[0].types) */
+
+            return {
+                ...state,
+                pokemons: filteredTypes
+            }
 
         default:
             return state
